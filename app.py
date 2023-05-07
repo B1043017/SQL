@@ -45,3 +45,10 @@ chart = alt.Chart(result_df).mark_circle().encode(
     #color = 'carrier'
 ).interactive()
 st.altair_chart(chart, theme="streamlit", use_container_width=True)
+
+# 更改Y軸編碼以顯示多個國家
+chart = alt.Chart(result_df).mark_circle().encode(
+    x = 'date',
+    y = alt.Field(country, type='nominal'),
+    # color = 'carrier'
+).interactive()
