@@ -45,19 +45,3 @@ chart = alt.Chart(result_df).mark_circle().encode(
     #color = 'carrier'
 ).interactive()
 st.altair_chart(chart, theme="streamlit", use_container_width=True)
-
-# 更改Y軸編碼以顯示多個國家
-result_df = result_df.set_index('date')[[country1, country2]].stack().reset_index()
-result_df.columns = ['date', 'country', 'value']
-
-# 繪製線圖
-import matplotlib.pyplot as plt
-
-plt.plot('date', 'value', data=result_df[result_df['country'] == country1], label=country1)
-plt.plot('date', 'value', data=result_df[result_df['country'] == country2], label=country2)
-
-plt.legend()
-plt.xlabel('Date')
-plt.ylabel(kind)
-
-st.pyplot()
